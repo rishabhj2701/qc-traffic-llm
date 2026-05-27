@@ -31,6 +31,7 @@ env/
 # Office temp files
 ~$*.docx
 ~$*.pptx
+*.bak
 
 # Large artifacts (keep available but don't commit)
 datasets/

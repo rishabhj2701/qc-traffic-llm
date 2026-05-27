@@ -92,14 +92,14 @@ Apply the replacement text from the prior review session, especially:
 The repo is structured as a **Phase 1 POC** matching the presentation architecture (`sql_rag/pipeline/`).
 
 ```bash
-cd /Users/rj/ISU/Spring2026/AI4CCEE
+cd /path/to/AI4CCEE
 source .venv/bin/activate
 pip install -r sql_rag/requirements.txt
 
 python sql_rag/setup_database.py
 ls -lh sql_rag/traffic_data.db          # ~12MB+, 457 source_files
 
-# Offline demos (no API key) — good for live presentation
+# Offline demos (no API key) - good for live presentation
 python sql_rag/run_poc.py --qc
 python sql_rag/run_poc.py --patterns
 streamlit run sql_rag/frontend.py
