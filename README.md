@@ -4,8 +4,8 @@ This repository contains the Phase 1 proof-of-concept code and the final deliver
 
 ## Final deliverables
 
-- `FinalSubmission/Phase1_Final_Report_QC_Traffic_LLM_FINAL.docx`
-- `FinalSubmission/QC_Traffic_LLM_Phase1_Report_FINAL  -  Repaired.pptx`
+- `Report/Phase1_Final_Report_QC_Traffic_LLM_FINAL.docx`
+- `Report/QC_Traffic_LLM_Phase1_Report_FINAL  -  Repaired.pptx`
 
 ## Codebase (primary)
 
