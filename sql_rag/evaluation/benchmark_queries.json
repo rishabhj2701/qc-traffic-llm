@@ -1,0 +1,42 @@
+[
+  {
+    "id": "uc1_q1",
+    "question": "What is the ADT for Station 1191 on April 9, 2025 in the NB_SB direction?",
+    "expected_route": "SQL",
+    "expected_answer": "8545",
+    "ground_truth_file": "Midblock_1191_Apr 9 2025_volume_NB_SB.csv",
+    "notes": "Report and slides previously said 8,744; verified CSV ADT is 8,545."
+  },
+  {
+    "id": "uc1_q2",
+    "question": "What is the PM peak total entering volume for INT-0009 on October 16, 2012?",
+    "expected_route": "SQL",
+    "expected_answer": "5708",
+    "ground_truth_file": "Intersection_INT-0009_Oct 16 2012_PM.csv",
+    "notes": "Peak hour total; peak interval occurs at 6:15 PM in the file, not 5:30 PM."
+  },
+  {
+    "id": "uc1_q3",
+    "question": "What are the ADT values for Station 7 NB and SB on March 7, 2019?",
+    "expected_route": "SQL",
+    "expected_answer": "311 NB, 312 SB",
+    "ground_truth_file": "Midblock_7_Mar 7 2019_volume_NB.csv / Midblock_7_Mar 7 2019_volume_SB.csv",
+    "notes": "Slides said 311/313; verified SB ADT is 312."
+  },
+  {
+    "id": "uc1_q4",
+    "question": "Which station has the highest verified real-world ADT in the dataset?",
+    "expected_route": "SQL",
+    "expected_answer": "725 with 17057 on Sep 27 2019 EB_WB",
+    "ground_truth_file": "Midblock_725_Sep 27 2019_volume_EB_WB.csv",
+    "notes": "Exclude synthetic 717 Dec 2021 (144,000) and test stations."
+  },
+  {
+    "id": "uc1_q5",
+    "question": "Compare weekday vs weekend ADT for Station 7 on March 5 and March 9, 2019 (NB_SB).",
+    "expected_route": "SQL",
+    "expected_answer": "748 weekday (Mar 5) vs 235 weekend (Mar 9); about 69% lower on weekend",
+    "ground_truth_file": "Midblock_7_Mar 5 2019_volume_NB_SB.csv / Midblock_7_Mar 9 2019_volume_NB_SB.csv",
+    "notes": "Slide used 624 vs 195 from a different date pair; Mar 5 vs Mar 9 yields 748 vs 235 (-69%)."
+  }
+]

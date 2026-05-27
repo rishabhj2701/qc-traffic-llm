@@ -1,0 +1,13 @@
+streamlit
+plotly
+pandas
+numpy
+scikit-learn
+faiss-cpu
+python-dotenv
+openai
+matplotlib
+seaborn
+sqlglot
+pydantic>=2.0
+openpyxl

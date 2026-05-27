@@ -1,0 +1,10 @@
+streamlit
+plotly
+pandas
+numpy
+scikit-learn
+faiss-cpu
+python-dotenv
+openai
+matplotlib
+seaborn
