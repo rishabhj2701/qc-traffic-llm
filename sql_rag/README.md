@@ -10,7 +10,7 @@ See **`ARCHITECTURE.md`** for component map and use-case modules.
 
 - **Location:** `../datasets/` (457 QC CSV files, flat folder)
 - **Agency:** Staging 2 - Alexandriava (Alexandria, VA)
-- **Phase 1 scope:** 31 primary stations (see `../SUBMISSION_CHECKLIST.md`)
+- **Phase 1 scope:** 31 primary stations
 
 ## Quick start
 
@@ -70,4 +70,4 @@ python -m pytest evaluation/rigorous_tests.py -v
 
 ## Submission
 
-See `../SUBMISSION_CHECKLIST.md` and `../PHASE1_SLIDE_CORRECTIONS.md` before submitting report + slides + this repo.
+See `../PHASE1_SLIDE_CORRECTIONS.md` before submitting report + slides + this repo.
