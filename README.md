@@ -1,6 +1,6 @@
-# AI4CCEE - QC Traffic LLM (Phase 1)
+# AI4CCEE - QC Traffic LLM 
 
-This repository is a Phase 1 handoff package for an exploratory evaluation of LLM-assisted insight generation on QC traffic data, including:
+This repository is a handoff package for an exploratory evaluation of LLM-assisted insight generation on QC traffic data, including:
 
 - A **Grounded Analytical System** proof-of-concept (`sql_rag/`) designed to reduce hallucination by grounding answers in executable queries and verifiable results
 - The **final report and slide deck** under `Report/`
