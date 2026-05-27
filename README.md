@@ -7,8 +7,8 @@ This repository is a Phase 1 handoff package for an exploratory evaluation of LL
 
 ## Final deliverables
 
-- `Report/Phase1_Final_Report_QC_Traffic_LLM_FINAL.docx`
-- `Report/QC_Traffic_LLM_Phase1_Report_FINAL  -  Repaired.pptx`
+- `Report/QC_Traffic_LLM_Phase1_Report.docx`
+- `Report/QC_Traffic_LLM_Phase1_Slides.pptx`
 
 ## Codebase (primary) - how to run
 
