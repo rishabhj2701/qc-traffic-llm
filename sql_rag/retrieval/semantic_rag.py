@@ -15,7 +15,9 @@ class SemanticRAG:
     def __init__(self):
         self.corpus: List[Dict[str, Any]] = []
         self.index = None
-        self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+        api_key = os.getenv("OPENAI_API_KEY")
+        # Optional: semantic retrieval requires embeddings + summarization models.
+        self.client = OpenAI(api_key=api_key) if api_key else None
         self.embedding_model = os.getenv("OPENAI_EMBEDDING_MODEL", "text-embedding-ada-002")
         self.chat_model = os.getenv("OPENAI_CHAT_MODEL", "gpt-4o")
 
@@ -46,6 +48,8 @@ class SemanticRAG:
         self._build_index()
 
     def _build_index(self) -> None:
+        if not self.client:
+            return
         if not self.corpus:
             return
             
@@ -63,6 +67,8 @@ class SemanticRAG:
             print(f"Failed to build semantic index: {e}")
 
     def search(self, query: str, top_k: int = 5) -> List[Dict[str, Any]]:
+        if not self.client:
+            return []
         if self.index is None or not self.corpus:
             return []
             
@@ -87,6 +93,8 @@ class SemanticRAG:
     def summarize(self, question: str, docs: List[Dict[str, Any]]) -> str:
         if not docs:
             return "No relevant semantic context found."
+        if not self.client:
+            return "Semantic RAG is unavailable (no OPENAI_API_KEY configured)."
             
         context_text = "\n\n".join([doc["text"] for doc in docs])
         # Note: We'll use the grounded answer generator logic for consistency, 

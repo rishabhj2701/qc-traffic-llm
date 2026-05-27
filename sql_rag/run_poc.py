@@ -26,6 +26,10 @@ from sql_rag.pipeline import (
     PatternDetectionEngine,
 )
 
+def _has_csvs(data_dir: str) -> bool:
+    p = Path(data_dir)
+    return p.is_dir() and any(p.glob("*.csv"))
+
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="QC Traffic LLM Phase 1 POC")
@@ -40,8 +44,14 @@ def main() -> None:
     db = str(DB_PATH)
     data_dir = str(ROOT / "datasets")
 
-    if args.rebuild or not Path(db).exists():
-        print(f"Building {db} from {data_dir}…")
+    if args.rebuild or (args.query or args.benchmark or args.direct) and not Path(db).exists():
+        if not _has_csvs(data_dir):
+            print("ERROR: datasets/ not found or contains no CSVs.")
+            print(f"- Expected: {data_dir}")
+            print("- Provide the QC CSV staging folder as ./datasets, then re-run:")
+            print("  python sql_rag/run_poc.py --rebuild")
+            return
+        print(f"Building {db} from {data_dir}...")
         build_db_from_files([data_dir], db_path=db)
         print("Done.")
 

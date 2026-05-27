@@ -22,8 +22,10 @@ class SchemaRegistry:
         self.schema_cache: Dict[str, Any] = {}
         self.column_embeddings: Optional[faiss.IndexFlatL2] = None
         self.column_map: List[Tuple[str, str]] = [] # (table, column)
-        
-        self.openai_client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+        api_key = os.getenv("OPENAI_API_KEY")
+        # Embeddings are an optional enhancement; registry must work offline.
+        self.openai_client = OpenAI(api_key=api_key) if api_key else None
         self.embedding_model = os.getenv("OPENAI_EMBEDDING_MODEL", "text-embedding-ada-002")
 
     def load_schema(self, force: bool = False) -> Dict[str, Any]:
@@ -82,6 +84,8 @@ class SchemaRegistry:
 
     def _build_column_index(self):
         """Build a vector index of column names for semantic matching."""
+        if not self.openai_client:
+            return
         if not self.column_map:
             return
             
@@ -129,6 +133,8 @@ class SchemaRegistry:
 
     def resolve_column(self, term: str, threshold: float = 0.5) -> List[Tuple[str, str, float]]:
         """Semantically resolve a natural language term to database columns."""
+        if not self.openai_client:
+            return []
         if not self.column_embeddings:
             return []
             

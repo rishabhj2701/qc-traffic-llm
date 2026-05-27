@@ -59,6 +59,7 @@ st.markdown(
 )
 
 DB = str(DB_PATH)
+DB_EXISTS = Path(DB).exists()
 if "router" not in st.session_state:
     st.session_state.router = QueryRouter(DB)
 if "grounded" not in st.session_state:
@@ -85,6 +86,12 @@ with st.sidebar:
     schema = st.session_state.router.registry.load_schema()
     st.metric("SQLite tables", len(schema))
     st.metric("CSV source files", TOTAL_CSV_FILES)
+    if not DB_EXISTS:
+        st.warning(
+            "SQLite database not found. To enable UC1 grounded querying, build it from QC CSVs:\n\n"
+            "1) Put the staging CSVs in `datasets/` at repo root\n"
+            "2) Run `python sql_rag/setup_database.py`\n",
+        )
 
 # --- Overview ---
 if page == "Overview":
@@ -117,6 +124,9 @@ if page == "Overview":
 # --- Query Interface ---
 elif page == "Query Interface":
     st.markdown('<p class="isu-header">Natural Language Query Interface</p>', unsafe_allow_html=True)
+    if not DB_EXISTS:
+        st.info("UC1 requires the SQLite database. See the sidebar for setup steps.")
+        st.stop()
     approach = st.radio(
         "Methodology",
         ["Grounded Analytical System", "Direct LLM (comparison)"],
@@ -187,6 +197,8 @@ elif page == "Query Interface":
 elif page == "QC Narratives":
     st.markdown('<p class="isu-header">Automated QC Narratives</p>', unsafe_allow_html=True)
     st.markdown("Use Case 2 — rule-based scan of **457 CSV files** (no hallucination on detection rules).")
+    if not Path(__file__).resolve().parents[1].joinpath("datasets").is_dir():
+        st.info("To run the audit, place the QC CSV staging folder at `datasets/` in the repo root.")
     if st.button("Run Global Quality Audit", type="primary"):
         with st.spinner("Scanning staging folder…"):
             report = st.session_state.qc_engine.generate_narrative_report()
