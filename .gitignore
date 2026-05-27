@@ -40,3 +40,4 @@ sql_rag/traffic_data.db
 export_traffic_data_*/
 qc_traffic_corpus.jsonl
 
+*.tocbak
